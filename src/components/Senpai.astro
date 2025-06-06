@@ -1,0 +1,86 @@
+---
+const { name, title, text1, text2, belt } = Astro.props;
+---
+
+<article>
+  <img id="profil" src=`/imgs/${name}.webp` alt=`Billede af ${name}` />
+
+  <div class="info">
+    <h2>{title} <b class="pil">↓</b></h2>
+    <p>{text1}</p>
+    <p>{text2}</p>
+    <img id="belt" src=`/imgs/ikoner/${belt}.svg` alt="Ikon af trænerens karatebælte" />
+  </div>
+</article>
+
+<style>
+  p {
+    font-size: 0.8rem;
+    margin: 0 0 0.8rem 0;
+  }
+  h2 {
+    color: var(--red800);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pil {
+    color: var(--mine-shaft300);
+    font-weight: 200;
+    font-size: 1rem;
+    margin-left: auto;
+    padding-bottom: 7px;
+  }
+  article {
+    margin: var(--s);
+    display: flex;
+    aspect-ratio: 16/9;
+    box-shadow: 0 4px 12px rgba(61, 61, 60, 0.2);
+    border-radius: 20px;
+  }
+
+  #profil {
+    width: 35%;
+    position: relative;
+    border-radius: 20px 0px 0px 20px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .info {
+    width: 75%;
+    background-color: white;
+    padding: 0.8rem var(--s) 0;
+    border-radius: 0 20px 20px 0;
+    overflow-y: scroll;
+  }
+
+  #belt {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 30%;
+    object-fit: contain;
+  }
+
+  @media (min-width: 900px) {
+    article {
+      margin: 20px var(--S) var(--S);
+    }
+
+    #profil {
+      width: 40%;
+    }
+    .info {
+      padding: 1rem var(--s) 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    .pil {
+      font-size: 1.5rem;
+    }
+  }
+</style>

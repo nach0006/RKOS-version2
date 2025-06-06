@@ -1,0 +1,118 @@
+---
+const { title, hold, age, range, activity, level, focus, key, instructor, name, day1, day2, text1, text2 } = Astro.props;
+---
+
+<article id={hold}>
+  <div class="text-o-img">
+    <h1>{title}</h1>
+    <img src=`/imgs/${hold}.webp` alt="Billede af karateholdet" />
+  </div>
+
+  <div class="info">
+    <p><b>{age}</b> {range}</p>
+    <p><b>{focus}</b> {key}</p>
+    <p><b>{activity}</b> {level}</p>
+    <p><b>{instructor}</b> {name}</p>
+  </div>
+
+  <div class="days">
+    <div>
+      <h2>{day1}</h2>
+      <p>{text1}</p>
+    </div>
+    <div class="line"></div>
+    <div>
+      <h2>{day2}</h2>
+      <p>{text2}</p>
+    </div>
+  </div>
+</article>
+
+<style>
+  #junior-hold {
+    scroll-margin-top: 120px;
+  }
+  #senior-hold,
+  #ekstra-training {
+    scroll-margin-top: 15px;
+  }
+
+  * {
+    box-sizing: unset;
+  }
+
+  body {
+    overflow-x: visible;
+  }
+
+  #hold {
+    margin-top: 3rem;
+  }
+  article {
+    margin: var(--m);
+  }
+  h1 {
+    position: absolute;
+    text-align: center;
+    left: 50%; /*i samarbejde med transform gør dette at h1 er i midten*/
+    transform: translateX(-50%);
+    color: var(--spring-wood50);
+    z-index: 10;
+    font-size: 2rem;
+  }
+  .text-o-img img {
+    position: relative;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 16/7;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s);
+    margin: var(--s) var(--m) var(--s) var(--m);
+  }
+
+  .days {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s);
+    margin: var(--s) var(--m) var(--s) var(--m);
+  }
+
+  .line {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    article {
+      margin: 30px var(--L) 0 var(--L);
+    }
+    .text-o-img img {
+      border-radius: 20px 20px 0 0;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+    }
+
+    .info {
+      column-gap: 5rem;
+      margin: var(--s) var(--m) var(--m) var(--m);
+    }
+
+    .days {
+      grid-template-columns: 1fr 0fr 1fr;
+      column-gap: var(--m);
+      margin: var(--s) var(--m) var(--l) var(--m);
+      align-items: center;
+    }
+    .line {
+      display: inline-block;
+      grid-column: 2/3;
+    }
+  }
+</style>

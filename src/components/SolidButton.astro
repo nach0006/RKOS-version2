@@ -1,0 +1,111 @@
+---
+const { link, text, variant, page } = Astro.props;
+---
+
+<a class={variant} href={link} aria-label=`Goes to ${page}`>{text}</a>
+
+<style>
+  a {
+    padding: 0.6rem 1rem;
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .black-white {
+    background-color: var(--mine-shaft950);
+    border: solid var(--mine-shaft950);
+
+    color: var(--spring-wood50);
+    border-radius: 10rem;
+    width: 200px;
+  }
+  .black-white:hover {
+    background-color: var(--spring-wood50);
+    border: solid var(--spring-wood50);
+    color: var(--mine-shaft950);
+  }
+  .black-red {
+    background-color: var(--mine-shaft950);
+    border: solid var(--mine-shaft950);
+    color: var(--spring-wood50);
+    border-radius: 10rem;
+  }
+  .black-red:hover {
+    background-color: var(--red700);
+    border: solid var(--red700);
+
+    color: var(--spring-wood50);
+  }
+
+  .red-white {
+    background-color: var(--red700);
+    border: solid var(--red700);
+
+    color: var(--spring-wood50);
+    border-radius: 10rem;
+  }
+  .red-white:hover {
+    background-color: var(--spring-wood50);
+    border: solid var(--spring-wood50);
+
+    color: var(--red700);
+  }
+
+  .red-black {
+    background-color: var(--red700);
+    border: solid var(--red700);
+
+    color: var(--spring-wood50);
+    border-radius: 10rem;
+  }
+  .red-black:hover {
+    background-color: var(--mine-shaft950);
+    border: solid var(--mine-shaft950);
+    color: var(--spring-wood50);
+  }
+
+  .check-b {
+    background-color: var(--mine-shaft950);
+    border: solid var(--mine-shaft950);
+    color: var(--spring-wood50);
+    border-radius: 10rem;
+  }
+
+  .check-r {
+    background-color: var(--spring-wood50);
+    border: solid var(--spring-wood50);
+    color: var(--red700);
+    border-radius: 10rem;
+  }
+
+  /* scroll down button */
+  .scroll-down {
+    width: 25px;
+    height: 25px;
+    font-size: 10px;
+    padding: 0px;
+  }
+
+  /** DESKTOP **/
+  @media (min-width: 900px) {
+    a {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    .black-white {
+      width: 300px;
+    }
+    .check {
+      width: 122px;
+    }
+
+    .scroll-down {
+      width: 70px;
+      height: 70px;
+      font-size: 40px;
+      padding: 7px;
+    }
+  }
+</style>

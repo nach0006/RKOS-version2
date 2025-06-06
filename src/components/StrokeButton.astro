@@ -1,0 +1,48 @@
+---
+const { variant, link, page, text } = Astro.props;
+---
+
+<a class={variant} href=`${link}` aria-label=`Goes to ${page}`>{text}</a>
+
+<style>
+  a {
+    padding: 0.6rem 1rem;
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .black-red {
+    background-color: white;
+    border: solid var(--mine-shaft950);
+    color: var(--mine-shaft950);
+    border-radius: 10rem;
+  }
+  .black-red:hover {
+    border: solid var(--red700);
+    color: var(--red700);
+  }
+
+  .red-black {
+    background-color: none;
+    border: solid var(--red700);
+    color: var(--red700);
+    border-radius: 10rem;
+  }
+
+  .red-black:hover {
+    border: solid var(--mine-shaft950);
+    color: var(--mine-shaft950);
+  }
+
+  @media (min-width: 900px) {
+    a {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    .black-red {
+      width: 122px;
+    }
+  }
+</style>
