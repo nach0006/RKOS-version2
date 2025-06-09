@@ -22,27 +22,21 @@
     align-items: center;
     text-align: center;
     color: white;
-    padding: 2rem;
-    margin-top: var(--m);
+    margin-top: var(--l);
   }
 
   .quote-box {
     padding: var(--S) var(--l);
-    min-width: 55ch;
     text-align: center;
-    justify-content: center;
-    align-items: center;
   }
   p {
     text-align: center;
-    width: fit-content;
+    max-width: 50ch;
     margin: 0 auto;
   }
   #quote {
     font-style: italic;
     font-size: 1.1rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
     margin: 8px 0 var(--s);
   }
 
@@ -53,6 +47,7 @@
   @media (min-width: 900px) {
     article {
       height: 400px;
+      margin-top: var(--M);
     }
 
     .quote-box {
@@ -61,14 +56,12 @@
 
     #quote {
       font-size: 1.6rem;
-      padding: var(--m);
     }
   }
 </style>
 
-<!-- Hjælp fra ChatGPT til at lave en carousel effekt hvor den ændre citat og navn efter 8s -->
-
-<script>
+<!-- Hjælp fra ChatGPT til at lave en carousel effekt hvor den ændrer citat og navn efter 8s -->
+<script type="module">
   const quotes = [
     { text: '"God sund disciplin under træningen, men før og efter taler vi godt sammen på tværs af alder, køn og ikke mindst bæltegrader."', author: "Pia" },
     { text: '"Man får lov at rykke sig meget, men under forhold mærket af tryghed og respekt for individet."', author: "Chelsie" },
@@ -82,7 +75,7 @@
 
   setInterval(() => {
     index = (index + 1) % quotes.length;
-    quoteEl.textContent = quotes[index].text;
-    authorEl.textContent = quotes[index].author;
+    quoteEl.textContent = quotes[index].text; // opdaterer teksten i <p id="quote"> med det nye citat
+    authorEl.textContent = quotes[index].author; // opdaterer teksten i <p id="author"> med forfatterens navn
   }, 8000); // hver 8s
 </script>

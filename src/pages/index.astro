@@ -4,25 +4,27 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import SolidButton from "../components/SolidButton.astro";
 import StrokeButton from "../components/StrokeButton.astro";
-import Offert from "../components/Offert.astro";
+import Offer from "../components/Offer.astro";
 import Card from "../components/Card.astro";
 import Citation from "../components/Citation.astro";
 import Kanku from "../components/Kanku.astro";
 ---
 
 <Layout title="Hjem" meta="Velkommen til RKOS (Roskilde Karate og Selvforsvar) en klub for alle aldre og niveauer. Læs om vores hold, træningstider og kommende events, og kontakt os for at få en gratis prøve-måned.">
-  <!-- components -->
-  <div class="hero-container">
-    <Hero />
-    <div id="intro" class="down-button">
-      <SolidButton variant="red-white scroll-down" link="#intro" text="↓" page="intro" />
+  <Hero img="/imgs/hero-img.webp" description="karatespark">
+    <img id="name" src="/imgs/ikoner/RKOS-name_logo.svg" alt="Klub navn" />
+
+    <div id="start" class="down-button">
+      <SolidButton variant="red-white scroll-down" link="#start" text="↓" page="start" />
     </div>
+
     <video class="motion-graphic" autoplay muted loop playsinline>
       <source src="/videos/kianji-motion.webm" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-  </div>
-  <article>
+  </Hero>
+
+  <article class="intro">
     <div class="info">
       <h2>Er du klar til selvforsvar?</h2>
       <p>Hos RKOS lærer man karate og selvforsvar, hvordan du bruger din modstanders styrke mod dem selv. Det handler ikke kun om slag og spark, man bliver også udfordret med disciplin, sådan udvikler vi os nemlig både fysisk og mentalt.</p>
@@ -30,99 +32,92 @@ import Kanku from "../components/Kanku.astro";
     </div>
     <img src="/imgs/parade.webp" alt="Karate parade" />
   </article>
-  <Offert />
-  <div class="hold-sektion">
+
+  <Offer />
+
+  <article class="hold-sektion">
     <h1>VORES HOLD</h1>
     <!-- karrusel -->
-    <div class="carousel-wrapper">
+    <div class="carousel-container">
       <button class="carousel-btn left" aria-label="Forrige">‹</button>
-
-      <div class="carousel" id="carousel">
+      <div class="carousel">
         <div class="carousel-card">
+          <!-- i = 0 -->
           <Card title="JUNIOR HOLD" hold="junior-hold" text="Holdet er egnet til børn alder 6-15 år. Der er træning hver mandag og torsdag, klokken 17:30 - 18:30." />
         </div>
         <div class="carousel-card">
+          <!-- i = 1 -->
           <Card title="SENIOR HOLD" hold="senior-hold" text="Holdet er egnet til alle - 15 år og ældre. Der er træning hver mandag og torsdag, klokken 18:00 - 19:30." />
         </div>
         <div class="carousel-card">
+          <!-- i = 2 -->
           <Card title="EKSTRA TRÆNING" hold="ekstra-training" text="Vi tilbyder også ekstra træning i form af kampdag, hver anden fredag, samt skov-træning hver søndag." />
         </div>
       </div>
       <button class="carousel-btn right" aria-label="Næste">›</button>
     </div>
+
     <div class="desktop-version">
       <Card title="JUNIOR HOLD" hold="junior-hold" text="Holdet er egnet til børn alder 6-15 år. Der er træning hver mandag og torsdag, klokken 17:30 - 18:30." />
       <Card title="SENIOR HOLD" hold="senior-hold" text="Holdet er egnet til alle - 15 år og ældre. Der er træning hver mandag og torsdag, klokken 18:00 - 19:30." />
       <Card title="EKSTRA TRÆNING" hold="ekstra-training" text="Vi tilbyder også ekstra træning i form af kampdag, hver anden fredag, samt skov-træning hver søndag." />
     </div>
-  </div>
+  </article>
 
   <Citation />
+
   <Kanku />
 
   <script type="module">
-    document.addEventListener("DOMContentLoaded", () => {
-      const cards = document.querySelectorAll(".carousel-card");
-      const leftBtn = document.querySelector(".carousel-btn.left");
-      const rightBtn = document.querySelector(".carousel-btn.right");
+    const cards = document.querySelectorAll(".carousel-card");
+    const leftBtn = document.querySelector(".carousel-btn.left");
+    const rightBtn = document.querySelector(".carousel-btn.right");
 
-      let current = 0;
+    // start med det første kort (index 0)
+    let current = 0;
 
-      function showCard(index) {
-        cards.forEach((card, i) => {
-          card.classList.toggle("active", i === index);
-        });
-      }
-
-      leftBtn.addEventListener("click", () => {
-        current = (current - 1 + cards.length) % cards.length;
-        showCard(current);
+    // vise et kort ad gangen
+    function showCard(index) {
+      // gennemgå alle kort
+      cards.forEach((card, i) => {
+        // hvis kortets index matcher det valgte, vis det
+        // ellers skjul det
+        card.classList.toggle("active", i === index);
       });
+    }
 
-      rightBtn.addEventListener("click", () => {
-        current = (current + 1) % cards.length;
-        showCard(current);
-      });
-
+    leftBtn.addEventListener("click", () => {
+      // træk én fra, og gå tilbage
+      current = (current - 1 + cards.length) % cards.length; // % sikrer, at vi altid bliver inden for 0 til 2 (karrusel)
+      // vis det nye aktive kort
       showCard(current);
     });
+
+    rightBtn.addEventListener("click", () => {
+      // læg én til, og gå frem
+      current = (current + 1) % cards.length;
+      showCard(current);
+    });
+
+    // vis det første kort ved start
+    showCard(current);
   </script>
 </Layout>
 
 <style>
-  .hero-container {
-    position: relative;
-    width: 100%;
+  /* hero */
+  #name {
+    position: absolute;
+    z-index: 2;
+    max-width: 50%;
+    left: var(--s);
+    top: 60%;
+    transform: translateY(-50%);
   }
   .down-button {
     position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-  }
-  article {
-    display: grid;
-    margin: var(--m);
-    gap: 10px;
-  }
-  article img {
-    justify-self: center;
-    margin-top: var(--s);
-    max-height: 300px;
-    border-radius: 0 0 20px 20px;
-  }
-
-  .info {
-    justify-self: center;
-    justify-content: center;
-  }
-
-  .info p {
-    max-width: 60ch;
-  }
-
-  #button {
-    margin-top: 0.8rem;
-    width: 180px;
+    bottom: var(--s);
+    left: var(--s);
   }
 
   .motion-graphic {
@@ -134,17 +129,42 @@ import Kanku from "../components/Kanku.astro";
     transform: translateY(50%);
     z-index: 10;
   }
-
-  .hold-sektion {
-    margin: var(--s);
+  /* intro & hold */
+  article {
+    display: grid;
+    margin: var(--m) var(--l);
+    gap: 10px;
   }
-  /** cards & carousel **/
+  article img {
+    justify-self: center;
+    margin-top: var(--s);
+    max-height: 300px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .info {
+    justify-self: center;
+  }
+
+  .info p {
+    max-width: 60ch;
+  }
+
+  #button {
+    margin-top: 0.8rem;
+    width: 180px;
+  }
+
+  /* hold */
+  .hold-sektion {
+    margin: 0 0 var(--s);
+  }
+
   h1 {
     text-align: center;
-    margin-top: var(--s);
   }
 
-  .carousel-wrapper {
+  .carousel-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -192,7 +212,6 @@ import Kanku from "../components/Kanku.astro";
   }
 
   .desktop-version {
-    /*display: none;*/
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -201,23 +220,32 @@ import Kanku from "../components/Kanku.astro";
   }
 
   @media (min-width: 900px) {
-    article {
-      display: grid;
+    /* hero */
+    #name {
+      left: var(--S);
+      top: 55%;
+    }
+
+    .down-button {
+      bottom: var(--S);
+      left: var(--S);
+    }
+
+    .motion-graphic {
+      width: 110px;
+    }
+
+    /* intro */
+    .intro {
       grid-template-columns: 1fr 1fr;
-      margin: var(--l) var(--M) var(--M) var(--l);
-      gap: var(--S);
-      align-self: start;
-      justify-self: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--M);
     }
 
     #button {
       width: 300px;
       margin-top: var(--m);
-    }
-
-    .motion-graphic {
-      width: 120px;
-      bottom: 5%;
     }
 
     article img {
@@ -226,16 +254,23 @@ import Kanku from "../components/Kanku.astro";
       margin-top: 0;
     }
 
+    /* hold */
+    article {
+      display: grid;
+      margin: var(--l) var(--M) var(--M) var(--l);
+      gap: var(--S);
+      align-self: start;
+      justify-self: center;
+    }
     .hold-sektion {
       margin: var(--l) auto var(--l) auto;
       max-width: 1200px;
       box-sizing: border-box;
     }
-    /** cards & carousel **/
-    .carousel-wrapper,
+
+    .carousel-container,
     .carousel,
     .carousel-btn {
-      /*display: none !important; */
       visibility: hidden;
       position: absolute;
       top: 0;
