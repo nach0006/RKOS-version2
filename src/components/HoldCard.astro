@@ -58,7 +58,7 @@ const { title, hold, age, range, activity, level, focus, key, instructor, name, 
     transform: translateX(-50%);
     color: var(--spring-wood50);
     z-index: 10;
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   .text-o-img img {
     position: relative;
@@ -73,14 +73,14 @@ const { title, hold, age, range, activity, level, focus, key, instructor, name, 
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--s);
-    margin: var(--s) var(--m) var(--s) var(--m);
+    margin: var(--s);
   }
 
   .days {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--s);
-    margin: var(--s) var(--m) var(--s) var(--m);
+    margin: var(--s) var(--s) var(--l);
   }
 
   .line {
@@ -93,10 +93,12 @@ const { title, hold, age, range, activity, level, focus, key, instructor, name, 
     }
     .text-o-img img {
       border-radius: 20px 20px 0 0;
+      max-height: 500px;
     }
 
     h1 {
-      font-size: 2.3rem;
+      margin-top: 1.5rem;
+      font-size: 2.5rem;
     }
 
     .info {
@@ -107,7 +109,7 @@ const { title, hold, age, range, activity, level, focus, key, instructor, name, 
     .days {
       grid-template-columns: 1fr 0fr 1fr;
       column-gap: var(--m);
-      margin: var(--s) var(--m) var(--l) var(--m);
+      margin: var(--s) var(--m) var(--M) var(--m);
       align-items: center;
     }
     .line {
