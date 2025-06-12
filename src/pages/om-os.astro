@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
 import Map from "../components/Map.astro";
 ---
 
@@ -149,6 +150,7 @@ import Map from "../components/Map.astro";
 <style>
   video {
     width: 100%;
+    padding-top: 77.7px;
   }
 
   .intro,
@@ -218,10 +220,17 @@ import Map from "../components/Map.astro";
   }
 
   @media (min-width: 900px) {
+    video {
+      padding-top: 0;
+      width: 100%;
+      max-height: 680px;
+      object-fit: cover;
+      display: block;
+    }
     .intro,
     .values-grid,
     .karate-ordbog {
-      padding: var(--M);
+      padding-top: var(--S);
     }
 
     .grid_1-1-1-1 {
